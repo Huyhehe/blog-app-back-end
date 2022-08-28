@@ -8,7 +8,7 @@ const {
 } = require("../app/middlewares/VerifyToken");
 
 router.post("/add", verifyAuthorization, blogsController.add);
-router.delete("/delete");
+router.delete("/delete/:id", verifyToken, blogsController.delete);
 router.get("/:id", blogsController.specific);
 router.get("/", verifyToken, blogsController.index);
 

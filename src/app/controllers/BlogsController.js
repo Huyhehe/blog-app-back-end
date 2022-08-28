@@ -36,8 +36,15 @@ class BlogsController {
     res.send("Added");
   }
 
-  delete(req, res) {
-    console.log(req.body.id);
+  async delete(req, res) {
+    const deletedID = mongoose.Types.ObjectId(req.params);
+    try {
+      const del = await Blog.deleteOne({ _id: deletedID });
+      console.log(del);
+      res.status(200).json("Deleted successfully");
+    } catch (error) {
+      res.status(400).json(error);
+    }
   }
 }
 

@@ -83,7 +83,13 @@ class AuthController {
     }
   }
 
-  async requestRefreshToken(req, res) {
+  // CHECK TOKEN STILL VALID OR NOT
+  checkTokenIsStillValid(req, res) {
+    res.status(200).json("Token is still valid");
+  }
+
+  // REFRESH TOKEN
+  requestRefreshToken(req, res) {
     // get the refresh token from user
     const refreshToken = req.cookies.refreshToken;
     // send error if there's not any refresh token
