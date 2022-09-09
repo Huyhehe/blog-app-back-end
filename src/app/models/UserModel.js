@@ -19,6 +19,14 @@ const User = new Schema({
     type: Boolean,
     default: false,
   },
+  dateRegistered: {
+    type: Date,
+    default: Date("0/0/0000"),
+  },
+  imageIRL: {
+    type: String,
+    default: "",
+  },
 });
 
 module.exports = mongoose.model("User", User);
