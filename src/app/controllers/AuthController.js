@@ -38,14 +38,16 @@ class AuthController {
       const hashed = await bcrypt.hash(req.body.password, salt);
 
       //create new user
+      const dateRegistered = Date.now();
       const newUser = await new User({
         name: req.body.name,
         userName: req.body.userName,
         password: hashed,
         email: req.body.email,
+        dateRegistered,
       });
 
-      const user = await newUser.save();
+      await newUser.save();
       res.status(201).json("Registered successfully");
     } catch (error) {
       res.json(error);
