@@ -1,3 +1,4 @@
+const { cloud } = require("../../utils/cloudinary");
 const User = require("../models/UserModel");
 
 class UserController {
@@ -17,6 +18,21 @@ class UserController {
         next(err);
       }
     });
+  }
+
+  //Post avatar
+  async postUserAvatar(req, res, next) {
+    try {
+      const uploadRes = await cloud.uploader.unsigned_upload(
+        req.body,
+        "react_blogs"
+      );
+      console.log(uploadRes);
+      res.status(200).json("uploaded successfully");
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
   }
 }
 

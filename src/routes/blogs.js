@@ -3,7 +3,6 @@ const router = express.Router();
 const blogsController = require("../app/controllers/BlogsController");
 const {
   verifyToken,
-  verifyAdminToken,
   verifyAuthorization,
 } = require("../app/middlewares/VerifyToken");
 
