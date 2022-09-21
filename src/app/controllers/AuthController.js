@@ -58,9 +58,7 @@ class AuthController {
   async login(req, res, next) {
     try {
       const loginUser = await User.findOne({ userName: req.body.userName });
-      if (!loginUser) {
-        res.status(404).json("User does not exist!");
-      }
+
       const validPassword = await bcrypt.compare(
         req.body.password,
         loginUser.password
@@ -81,7 +79,7 @@ class AuthController {
         res.status(200).json({ ...others, accessToken });
       }
     } catch (error) {
-      res.status(500).json(error);
+      res.status(404).json("User does not exist!");
     }
   }
 
